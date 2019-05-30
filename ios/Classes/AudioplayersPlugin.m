@@ -240,7 +240,7 @@ FlutterMethodChannel *_channel_audioplayer;
                     error:&error];*/
     BOOL success = [[AVAudioSession sharedInstance]
                     setCategory: category
-                  //  withOptions: AVAudioSessionCategoryOptionMixWithOthers
+                    withOptions: AVAudioSessionCategoryOptionMixWithOthers
                     error: &error];
    
    success = [[AVAudioSession sharedInstance] overrideOutputAudioPort:AVAudioSessionPortOverrideSpeaker error:&error];
