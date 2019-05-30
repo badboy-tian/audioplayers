@@ -233,7 +233,7 @@ FlutterMethodChannel *_channel_audioplayer;
     if (respectSilence) {
         category = AVAudioSessionCategoryAmbient;
     } else {
-        category = AVAudioSessionCategoryPlayBack;
+        category = AVAudioSessionCategoryPlayback;
     }
     /*BOOL success = [[AVAudioSession sharedInstance]
                     setCategory: category
