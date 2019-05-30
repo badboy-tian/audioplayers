@@ -242,6 +242,8 @@ FlutterMethodChannel *_channel_audioplayer;
                     setCategory: category
                   //  withOptions: AVAudioSessionCategoryOptionMixWithOthers
                     error: &error];
+   
+   success = [[AVAudioSession sharedInstance] overrideOutputAudioPort:AVAudioSessionPortOverrideSpeaker error:&error];
 
   if (!success) {
     NSLog(@"Error setting speaker: %@", error);
