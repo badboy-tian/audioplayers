@@ -221,7 +221,7 @@ class WrappedMediaPlayer {
         )
         let playbackStatus = player?.currentItem?.status
             //print("------------->1")
-        if self.url != url || reset /*playbackStatus == .failed || playbackStatus == nil*/ {
+        if (reset == false && (self.url != url || playbackStatus == .failed || playbackStatus == nil)) || reset {
             //print("------------->2")
             let parsedUrl = isLocal ? URL.init(fileURLWithPath: url.deletingPrefix("file://")) : URL.init(string: url)!
             let playerItem = AVPlayerItem.init(url: parsedUrl)
