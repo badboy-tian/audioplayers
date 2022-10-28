@@ -21,31 +21,31 @@ import 'notifications/notification_service.dart';
 /// hooks for handlers and callbacks.
 class AudioPlayer {
   static final MethodChannel _channel =
-      const MethodChannel('xyz.luan/audioplayers')
-        ..setMethodCallHandler(platformCallHandler);
+  const MethodChannel('xyz.luan/audioplayers')
+    ..setMethodCallHandler(platformCallHandler);
 
   static const _uuid = Uuid();
 
   final StreamController<PlayerState> _playerStateController =
-      StreamController<PlayerState>.broadcast();
+  StreamController<PlayerState>.broadcast();
 
   final StreamController<PlayerState> _notificationPlayerStateController =
-      StreamController<PlayerState>.broadcast();
+  StreamController<PlayerState>.broadcast();
 
   final StreamController<Duration> _positionController =
-      StreamController<Duration>.broadcast();
+  StreamController<Duration>.broadcast();
 
   final StreamController<Duration> _durationController =
-      StreamController<Duration>.broadcast();
+  StreamController<Duration>.broadcast();
 
   final StreamController<void> _completionController =
-      StreamController<void>.broadcast();
+  StreamController<void>.broadcast();
 
   final StreamController<bool> _seekCompleteController =
-      StreamController<bool>.broadcast();
+  StreamController<bool>.broadcast();
 
   final StreamController<String> _errorController =
-      StreamController<String>.broadcast();
+  StreamController<String>.broadcast();
 
   PlayingRoute _playingRouteState = PlayingRoute.SPEAKERS;
 
@@ -132,8 +132,7 @@ class AudioPlayer {
     notificationService = NotificationService(_invokeMethod);
   }
 
-  Future<int> _invokeMethod(
-    String method, [
+  Future<int> _invokeMethod(String method, [
     Map<String, dynamic> arguments = const <String, dynamic>{},
   ]) {
     final enhancedArgs = <String, dynamic>{
@@ -144,10 +143,8 @@ class AudioPlayer {
     return invokeMethod(method, enhancedArgs);
   }
 
-  static Future<int> invokeMethod(
-    String method,
-    Map<String, dynamic> args,
-  ) async {
+  static Future<int> invokeMethod(String method,
+      Map<String, dynamic> args,) async {
     final result = await _channel.invokeMethod<int>(method, args);
     return result ?? 0; // if null, we assume error
   }
@@ -159,8 +156,7 @@ class AudioPlayer {
   /// (By default isLocal is inferred by the provided path)
   ///
   /// respectSilence and stayAwake are not implemented on macOS.
-  Future<int> play(
-    String url, {
+  Future<int> play(String url, {
     bool? isLocal,
     double volume = 1.0,
     // position must be null by default to be compatible with radio streams
@@ -169,6 +165,7 @@ class AudioPlayer {
     bool stayAwake = false,
     bool duckAudio = false,
     bool recordingActive = false,
+    bool reset = true,
   }) async {
     final result = await _invokeMethod(
       'play',
@@ -181,6 +178,7 @@ class AudioPlayer {
         'stayAwake': stayAwake,
         'duckAudio': duckAudio,
         'recordingActive': recordingActive,
+        'reset': reset,
       },
     );
 
@@ -194,8 +192,7 @@ class AudioPlayer {
   /// Plays audio in the form of a byte array.
   ///
   /// This is only supported on Android (SDK >= 23) currently.
-  Future<int> playBytes(
-    Uint8List bytes, {
+  Future<int> playBytes(Uint8List bytes, {
     double volume = 1.0,
     // position must be null by default to be compatible with radio streams
     Duration? position,
@@ -342,11 +339,11 @@ class AudioPlayer {
   /// this method.
   ///
   /// respectSilence is not implemented on macOS.
-  Future<int> setUrl(
-    String url, {
+  Future<int> setUrl(String url, {
     bool? isLocal,
     bool respectSilence = false,
     bool recordingActive = false,
+    bool reset = true,
   }) {
     return _invokeMethod(
       'setUrl',
@@ -355,6 +352,7 @@ class AudioPlayer {
         'isLocal': isLocal ?? isLocalUrl(url),
         'respectSilence': respectSilence,
         'recordingActive': recordingActive,
+        'reset': reset,
       },
     );
   }
@@ -403,7 +401,7 @@ class AudioPlayer {
       case 'audio.onNotificationPlayerStateChanged':
         final isPlaying = callArgs['value'] as bool;
         player.notificationState =
-            isPlaying ? PlayerState.PLAYING : PlayerState.PAUSED;
+        isPlaying ? PlayerState.PLAYING : PlayerState.PAUSED;
         break;
       case 'audio.onDuration':
         final millis = callArgs['value'] as int;

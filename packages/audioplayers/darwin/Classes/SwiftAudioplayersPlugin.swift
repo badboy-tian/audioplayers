@@ -154,6 +154,7 @@ public class SwiftAudioplayersPlugin: NSObject, FlutterPlugin {
             let respectSilence: Bool = (args["respectSilence"] as? Bool) ?? false
             let recordingActive: Bool = (args["recordingActive"] as? Bool) ?? false
             let duckAudio: Bool = (args["duckAudio"] as? Bool) ?? false
+            let reset: Bool = (args["reset"] as? Bool) ?? false
             
             player.play(
                 url: url,
@@ -162,7 +163,8 @@ public class SwiftAudioplayersPlugin: NSObject, FlutterPlugin {
                 time: seekTime,
                 isNotification: respectSilence,
                 recordingActive: recordingActive,
-                duckAudio: duckAudio
+                duckAudio: duckAudio,
+                reset: reset
             )
         } else if method == "pause" {
             player.pause()
@@ -186,7 +188,8 @@ public class SwiftAudioplayersPlugin: NSObject, FlutterPlugin {
             let isLocal: Bool = (args["isLocal"] as? Bool) ?? false
             let respectSilence: Bool = (args["respectSilence"] as? Bool) ?? false
             let recordingActive: Bool = (args["recordingActive"] as? Bool) ?? false
-            
+            let reset: Bool = (args["reset"] as? Bool) ?? false
+
             if url == nil {
                 Logger.error("Null URL received on setUrl")
                 result(0)
@@ -198,7 +201,8 @@ public class SwiftAudioplayersPlugin: NSObject, FlutterPlugin {
                 isLocal: isLocal,
                 isNotification: respectSilence,
                 recordingActive: recordingActive,
-                duckAudio: false
+                duckAudio: false,
+                reset: reset
             ) {
                 player in
                 result(1)

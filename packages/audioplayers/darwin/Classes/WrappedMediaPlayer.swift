@@ -210,6 +210,7 @@ class WrappedMediaPlayer {
         isNotification: Bool,
         recordingActive: Bool,
         duckAudio: Bool,
+        reset: Bool,
         onReady: @escaping (AVPlayer) -> Void
     ) {
         reference.updateCategory(
@@ -219,19 +220,22 @@ class WrappedMediaPlayer {
             duckAudio: duckAudio
         )
         let playbackStatus = player?.currentItem?.status
-        
-        if self.url != url || playbackStatus == .failed || playbackStatus == nil {
+            //print("------------->1")
+        if self.url != url || reset /*playbackStatus == .failed || playbackStatus == nil*/ {
+            //print("------------->2")
             let parsedUrl = isLocal ? URL.init(fileURLWithPath: url.deletingPrefix("file://")) : URL.init(string: url)!
             let playerItem = AVPlayerItem.init(url: parsedUrl)
             playerItem.audioTimePitchAlgorithm = AVAudioTimePitchAlgorithm.timeDomain
             let player: AVPlayer
             if let existingPlayer = self.player {
+            //print("------------->3")
                 keyVakueObservation?.invalidate()
                 self.url = url
                 clearObservers()
                 existingPlayer.replaceCurrentItem(with: playerItem)
                 player = existingPlayer
             } else {
+            //print("------------->4")
                 player = AVPlayer.init(playerItem: playerItem)
                 
                 self.player = player
@@ -279,6 +283,7 @@ class WrappedMediaPlayer {
             keyVakueObservation?.invalidate()
             keyVakueObservation = newKeyValueObservation
         } else {
+        //print("------------->5")
             if playbackStatus == .readyToPlay {
                 onReady(player!)
             }
@@ -292,7 +297,8 @@ class WrappedMediaPlayer {
         time: CMTime?,
         isNotification: Bool,
         recordingActive: Bool,
-        duckAudio: Bool
+        duckAudio: Bool,
+        reset: Bool
     ) {
         reference.updateCategory(
             recordingActive: recordingActive,
@@ -306,7 +312,8 @@ class WrappedMediaPlayer {
             isLocal: isLocal,
             isNotification: isNotification,
             recordingActive: recordingActive,
-            duckAudio: duckAudio
+            duckAudio: duckAudio,
+            reset: reset
         ) {
             player in
             player.volume = Float(volume)

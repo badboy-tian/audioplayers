@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/packages/audioplayers_linux/build" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/audioplayers_linux/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/audioplayers_linux/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/audioplayers_web/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/audioplayers_web/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/audioplayers_web/build" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/audioplayers_darwin/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/audioplayers_darwin/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/audioplayers_darwin/build" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/audioplayers_platform_interface/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/audioplayers_platform_interface/build" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/audioplayers_platform_interface/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/audioplayers_windows/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/audioplayers_windows/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/audioplayers_windows/build" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/audioplayers_android/build" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/audioplayers_android/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/audioplayers_android/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/audioplayers/build" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/audioplayers/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/audioplayers/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/audioplayers/example/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/audioplayers/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/audioplayers/example/.pub" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="Dart SDK" level="project" />
+  </component>
+</module>
